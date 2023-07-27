@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" name="name" value="{{ old('name') }}" required placeholder="Enter Name">
-                      </div>
+                    </div>
                   <div class="form-group">
                     <label>Email</label>
                     <input type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Enter email">
