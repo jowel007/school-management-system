@@ -9,13 +9,13 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      
+
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
-      
+
 
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
@@ -102,8 +102,8 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      
-      
+
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -127,23 +127,23 @@
         </div>
       </div>
 
-      
+
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          
+
           @if (Auth::user()->user_type == 1)
 
               <li class="nav-item">
                 <a href="{{ url('admin/dashboard') }}" class="nav-link @if (Request::segment(2) == 'dashboard') active @endif ">
-                  
-                
+
+
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                    Dashboard 
+                    Dashboard
                   </p>
                 </a>
               </li>
@@ -166,6 +166,15 @@
                 </a>
               </li>
 
+                <li class="nav-item">
+                    <a href="{{ url('admin/subject/list') }}" class="nav-link @if (Request::segment(2) == 'subject') active @endif">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            All Subject
+                        </p>
+                    </a>
+                </li>
+
             @elseif (Auth::user()->user_type == 2)
 
               <li class="nav-item">
@@ -177,7 +186,7 @@
                 </a>
               </li>
 
-              
+
 
             @elseif (Auth::user()->user_type == 3)
 
@@ -202,8 +211,8 @@
                 </li>
 
           @endif
-        
-          
+
+
 
 
           <li class="nav-item">
@@ -214,10 +223,10 @@
               </p>
             </a>
           </li>
-          
-         
 
-          
+
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
