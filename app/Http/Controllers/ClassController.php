@@ -41,7 +41,7 @@ class ClassController extends Controller
         }else {
             abort(404);
         }
-        
+
     }
 
     public function update($id, Request $request){
@@ -61,6 +61,8 @@ class ClassController extends Controller
 
         return redirect()->back()->with('error','Class Deletd Successfully');
     }
+
+
 
 
 }
