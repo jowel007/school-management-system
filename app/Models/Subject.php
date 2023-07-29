@@ -32,7 +32,7 @@ class Subject extends Model
 
         $return = $return->where('subjects.is_delete','=',0)
             ->orderBy('subjects.id','desc')
-            ->paginate(3);
+            ->paginate(30);
 
         return $return;
     }
@@ -41,6 +41,15 @@ class Subject extends Model
         return self::find($id);
     }
 
+    static public function getSubject(){
+        $return = Subject::select('subjects.*')
+            ->join('users','users.id','subjects.created_by')
+            ->where('subjects.is_delete','=',0)
+            ->where('subjects.status','=',0)
+            ->orderBy('subjects.name','asc')
+            ->get();
 
+        return $return;
+    }
 
 }

@@ -1,7 +1,4 @@
 
-
-
-
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -139,8 +136,6 @@
 
               <li class="nav-item">
                 <a href="{{ url('admin/dashboard') }}" class="nav-link @if (Request::segment(2) == 'dashboard') active @endif ">
-
-
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
@@ -171,6 +166,15 @@
                         <i class="nav-icon far fa-user"></i>
                         <p>
                             All Subject
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/assign_subject/list') }}" class="nav-link @if (Request::segment(2) == 'assign_subject') active @endif">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Assign Subject
                         </p>
                     </a>
                 </li>
