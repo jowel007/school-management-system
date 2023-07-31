@@ -25,7 +25,7 @@
                         <div class="card card-primary">
 
 
-                            <form method="post" action="">
+                            <form method="post" action="" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
 
@@ -55,6 +55,9 @@
                                             <label>Class <span style="color: red">*</span></label>
                                                 <select class="form-control" required name="class_id">
                                                     <option value="">Select Class</option>
+                                                    @foreach($getClass as $value)
+                                                        <option value="{{$value->id}}">{{ $value->name }}</option>
+                                                    @endforeach
                                                 </select>
                                         </div>
 
