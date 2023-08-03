@@ -24,6 +24,18 @@ class StudentController extends Controller
 
     public function insert(Request $request)
     {
+        request()->validate([
+            'email' => 'required|email|unique:users',
+            'weight' => 'max:10',
+            'blood_group' => 'max:10',
+            'mobile_number' => 'max:15|min:8',
+            'admission_number' => 'max:50',
+            'roll_number' => 'max:50',
+            'cast' => 'max:50',
+            'religion' => 'max:50',
+            'height' => 'max:10',
+        ]);
+
        // dd($request->all());
         $student = new User;
         $student->name = trim($request->name);
