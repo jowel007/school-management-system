@@ -167,5 +167,21 @@ class StudentController extends Controller
         return redirect('admin/student/list')->with('success','Student Updated Successfully Done');
     }
 
+    public function delete($id){
+
+            $getRecord = User::getSingle($id);
+            if (!empty($getRecord)){
+                $getRecord->is_delete =1;
+                $getRecord->save();
+
+                return redirect()->back()->with('warning','Student Deleted Successfully Done');
+            }
+            else
+            {
+                abort(404);
+            }
+    }
+
+
 
 }
