@@ -81,6 +81,74 @@ class User extends Authenticatable
             ->where('users.user_type','=',3)
             ->where('users.is_delete','=',0);
 
+                //filter
+        if (!empty(Request::get('name')))
+        {
+            $return = $return->where('users.name','like','%'.Request::get('name').'%');
+        }
+
+        if (!empty(Request::get('lastname')))
+        {
+            $return = $return->where('users.lastname','like','%'.Request::get('lastname').'%');
+        }
+
+        if (!empty(Request::get('email')))
+        {
+            $return = $return->where('users.email','like','%'.Request::get('email').'%');
+        }
+
+        if (!empty(Request::get('admission_number')))
+        {
+            $return = $return->where('users.admission_number','like','%'.Request::get('admission_number').'%');
+        }
+
+        if (!empty(Request::get('roll_number')))
+        {
+            $return = $return->where('users.roll_number','like','%'.Request::get('roll_number').'%');
+        }
+
+        if (!empty(Request::get('class')))
+        {
+            $return = $return->where('users.class','like','%'.Request::get('class').'%');
+        }
+
+        if (!empty(Request::get('gender')))
+        {
+            $return = $return->where('users.gender','like','%'.Request::get('gender').'%');
+        }
+
+        if (!empty(Request::get('cast')))
+        {
+            $return = $return->where('users.cast','like','%'.Request::get('cast').'%');
+        }
+        if (!empty(Request::get('religion')))
+        {
+            $return = $return->where('users.religion','like','%'.Request::get('religion').'%');
+        }
+        if (!empty(Request::get('mobile_number')))
+        {
+            $return = $return->where('users.mobile_number','like','%'.Request::get('mobile_number').'%');
+        }
+        if (!empty(Request::get('blood_group')))
+        {
+            $return = $return->where('users.blood_group','like','%'.Request::get('blood_group').'%');
+        }
+
+        if (!empty(Request::get('admission_date')))
+        {
+            $return = $return->whereDate('users.admission_date','like','%'.Request::get('admission_date').'%');
+        }
+
+        if (!empty(Request::get('date')))
+        {
+            $return = $return->whereDate('users.created_at','like','='.Request::get('created_at').'%');
+        }
+
+        if (!empty(Request::get('status')))
+        {
+            $status = (Request::get('status') == 100) ? 0 : 1;
+            $return = $return->where('users.status','like','=',$status);
+        }
 
         $return = $return ->orderBy('users.id','desc')
             ->paginate(10);
