@@ -79,6 +79,53 @@ class User extends Authenticatable
             ->where('user_type','=',4)
             ->where('is_delete','=',0);
 
+            //filter
+        if (!empty(Request::get('name')))
+        {
+            $return = $return->where('users.name','like','%'.Request::get('name').'%');
+        }
+
+        if (!empty(Request::get('lastname')))
+        {
+            $return = $return->where('users.lastname','like','%'.Request::get('lastname').'%');
+        }
+
+        if (!empty(Request::get('email')))
+        {
+            $return = $return->where('users.email','like','%'.Request::get('email').'%');
+        }
+
+
+        if (!empty(Request::get('gender')))
+        {
+            $return = $return->where('users.gender','=',Request::get('gender'));
+        }
+
+        if (!empty(Request::get('ooccupation')))
+        {
+            $return = $return->where('users.ooccupation','like','%'.Request::get('ooccupation').'%');
+        }
+        if (!empty(Request::get('address')))
+        {
+            $return = $return->where('users.address','like','%'.Request::get('address').'%');
+        }
+        if (!empty(Request::get('mobile_number')))
+        {
+            $return = $return->where('users.mobile_number','like','%'.Request::get('mobile_number').'%');
+        }
+
+        if (!empty(Request::get('date')))
+        {
+            $return = $return->whereDate('users.created_at','like','='.Request::get('created_at').'%');
+        }
+
+        if (!empty(Request::get('status')))
+        {
+            $status = (Request::get('status') == 100) ? 0 : 1;
+            $return = $return->where('users.status','like','=',$status);
+        }
+
+
             $return = $return ->orderBy('id','desc')
             ->paginate(10);
             return $return;
@@ -125,7 +172,7 @@ class User extends Authenticatable
 
         if (!empty(Request::get('gender')))
         {
-            $return = $return->where('users.gender','like','%'.Request::get('gender').'%');
+            $return = $return->where('users.gender','=',Request::get('gender'));
         }
 
         if (!empty(Request::get('cast')))

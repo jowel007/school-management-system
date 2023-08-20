@@ -24,40 +24,86 @@
     <section class="content">
       <div class="container-fluid">
                   <!-- general form elements -->
-                  <div class="card">
+          <div class="card">
 
-                      <div class="card-header">
-                          <h3 class="card-title">Search Parent</h3>
-                      </div>
+              <div class="card-header">
+                  <h3 class="card-title">Search Parents</h3>
+              </div>
 
-                      <form method="get" action="">
+              <form method="get" action="">
 
-                          <div class="card-body">
-                              <div class="row">
-                                  <div class="form-group col-md-3">
-                                      <label>Name</label>
-                                      <input type="text" class="form-control" name="name" value="{{ Request::get('name') }}"  placeholder="Enter Name">
-                                  </div>
-                                  <div class="form-group col-md-3">
-                                      <label>Email</label>
-                                      <input type="text" class="form-control" name="email" value="{{ Request::get('email') }}"  placeholder="Enter email">
-                                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="form-group col-md-2">
+                              <label>Name</label>
+                              <input type="text" class="form-control" name="name" value="{{ Request::get('name') }}"  placeholder="Enter Name">
+                          </div>
+                          <div class="form-group col-md-2">
+                              <label>Last Name</label>
+                              <input type="text" class="form-control" name="lastname" value="{{ Request::get('lastname') }}"  placeholder="Enter Name">
+                          </div>
+                          <div class="form-group col-md-2">
+                              <label>Email</label>
+                              <input type="text" class="form-control" name="email" value="{{ Request::get('email') }}"  placeholder="Enter email">
+                          </div>
 
-                                  <div class="form-group col-md-3">
-                                      <label>Date</label>
-                                      <input type="date" class="form-control" name="date" value="{{ Request::get('date') }}"  placeholder="Enter email">
-                                  </div>
-                                  <div class="form-group col-md-3">
-                                      <button class="btn btn-primary" type="submit" style="margin-top: 30px">Search</button>
-                                      <a href="{{ url('admin/parent/list') }}" class="btn btn-success" style="margin-top: 30px">Clear</a>
-                                  </div>
-                              </div>
+
+                          <div class="form-group col-md-2">
+                              <label>Gender</label>
+                              <select class="form-control" name="gender">
+                                  <option value="">Select Gender</option>
+                                  <option  {{ Request::get('gender') == 'Male' ? 'selected' : '' }} value="Male">Male</option>
+                                  <option {{ Request::get('gender') == 'FeMale' ? 'selected' : '' }} value="FeMale">FeMale</option>
+                                  <option {{ Request::get('gender') == 'Others' ? 'selected' : '' }} value="Others">Others</option>
+                              </select>
+
+                          </div>
+
+                          <div class="form-group col-md-2">
+                              <label>Occupation</label>
+                              <input type="text" class="form-control" name="occupation" value="{{ Request::get('ooccupation') }}"  placeholder="Enter Occupation">
+                          </div>
+
+                          <div class="form-group col-md-2">
+                              <label>Address</label>
+                              <input type="text" class="form-control" name="address" value="{{ Request::get('address') }}"  placeholder="Enter Address">
+                          </div>
+
+                          <div class="form-group col-md-2">
+                              <label>Mobile No</label>
+                              <input type="text" class="form-control" name="mobile_number" value="{{ Request::get('mobile_number') }}"  placeholder="Enter Mobile No">
+                          </div>
+
+
+                          <div class="form-group col-md-2">
+                              <label>Status</label>
+                              <select class="form-control" name="status">
+                                  <option value="">Select Status</option>
+                                  <option  {{ Request::get('status') == '100' ? 'selected' : '' }} value="100">Active</option>
+                                  <option {{ Request::get('status') == '1' ? 'selected' : '' }} value="1">InActive</option>
+                              </select>
 
                           </div>
 
 
-                      </form>
+
+                          <div class="form-group col-md-2">
+                              <label>Created Date</label>
+                              <input type="date" class="form-control" name="created_at" value="{{ Request::get('created_at') }}"  placeholder="Enter Date">
+                          </div>
+                          <div class="form-group col-md-3">
+                              <button class="btn btn-primary" type="submit" style="margin-top: 30px">Search</button>
+                              <a href="{{ url('admin/parent/list') }}" class="btn btn-success" style="margin-top: 30px">Clear</a>
+                          </div>
+                      </div>
+
                   </div>
+
+
+              </form>
+          </div>
+
+                            <!-- /.card -->
                   <!-- /.card -->
 
 
