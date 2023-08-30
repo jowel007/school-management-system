@@ -125,6 +125,10 @@ Route::group(['middleware' => 'teacher'], function (){
     // Route::get('teacher/dashboard', function () {
     //     return view('admin.dashboard');
     // });
+
+    Route::get('teacher/account', [UserController::class,'MyAccount']);
+    Route::post('teacher/account', [UserController::class,'UpdateMyAccount']);
+
 });
 
 Route::group(['middleware' => 'student'], function (){
