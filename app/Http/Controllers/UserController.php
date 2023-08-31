@@ -30,9 +30,72 @@ class UserController extends Controller
     }
 
     public function MyAccount(){
+                    //for teacher
+        // $data['getRecord'] = User::getSingle(Auth::user()->id);
+        // $data['header_title'] = 'My Account';
+        // return view('teacher.my_account',$data);
+
         $data['getRecord'] = User::getSingle(Auth::user()->id);
         $data['header_title'] = 'My Account';
-        return view('teacher.my_account',$data);
+        if (Auth::user()->user_type == 2 ) {
+
+            return view('teacher.my_account',$data);
+
+        }elseif (Auth::user()->user_type == 3) {
+
+            return view('student.my_account',$data);
+
+        }
+    }
+
+    public function UpdateMyStudentAccount(Request $request)
+    {
+        // dd($request->all());
+        $id = Auth::user()->id;
+        request()->validate([
+            'email' => 'required|email|unique:users,email,'.$id,
+            'weight' => 'max:10',
+            'blood_group' => 'max:10',
+            'mobile_number' => 'max:15|min:8',
+            'cast' => 'max:50',
+            'religion' => 'max:50',
+            'height' => 'max:10',
+        ]);
+
+        $student = User::getSingle($id);
+        $student->name = trim($request->name);
+        $student->last_name = trim($request->last_name);
+        $student->gender = trim($request->gender);
+
+
+        if (!empty($request->date_of_birth))
+        {
+            $student->date_of_birth = trim($request->date_of_birth);
+        }
+
+
+        if (!empty($request->file('profile_pic')))
+        {
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr =date('Ymdhis').Str::random(20);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/profile/',$filename);
+
+            $student->profile_pic = $filename;
+        }
+
+        $student->cast = trim($request->cast);
+        $student->religion = trim($request->religion);
+        $student->mobile_number = trim($request->mobile_number);
+        $student->blood_group = trim($request->blood_group);
+        $student->height = trim($request->height);
+        $student->weight = trim($request->weight);
+        $student->email = trim($request->email);
+        $student->save();
+
+        return redirect()->back()->with('info','Student Account Updated Successfully Done');
+
     }
 
 
