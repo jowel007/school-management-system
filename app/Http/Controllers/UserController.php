@@ -45,7 +45,52 @@ class UserController extends Controller
 
             return view('student.my_account',$data);
 
+        }elseif (Auth::user()->user_type == 4) {
+
+            return view('parent.my_account',$data);
+
         }
+    }
+
+    public function UpdateMyParentsAccount(Request $request)
+    {
+        $id = Auth::user()->id;
+        request()->validate([
+            'email' => 'required|email|unique:users,email,'.$id,
+            'mobile_number' => 'max:15|min:8',
+            'address' => 'max:255',
+            'occupation' => 'max:255'
+        ]);
+
+        // dd($request->all());
+        $student = User::getSingle($id);
+
+        $student->name = trim($request->name);
+        $student->last_name = trim($request->last_name);
+        $student->gender = trim($request->gender);
+        $student->occupation = trim($request->occupation);
+        $student->address = trim($request->address);
+
+        if (!empty($request->file('profile_pic')))
+        {
+            if (!empty($student->getProfile()))
+            {
+                unlink('upload/profile/'.$student->profile_pic);
+            }
+
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr =date('Ymdhis').Str::random(20);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/profile/',$filename);
+
+            $student->profile_pic = $filename;
+        }
+        $student->mobile_number =trim($request->mobile_number);
+        $student->email = trim($request->email);
+        $student->save();
+
+        return redirect()->back()->with('info','Parents Accounts Updated Successfully Done');
     }
 
     public function UpdateMyStudentAccount(Request $request)

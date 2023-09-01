@@ -150,10 +150,13 @@ Route::group(['middleware' => 'parent'], function (){
 
     Route::get('/parent/dashboard', [DashboardController::class,'dashboard']);
 
-    Route::get('parent/change_password', [UserController::class,'change_password']);
-    Route::post('parent/change_password', [UserController::class,'update_change_password']);
+    Route::get('parents/change_password', [UserController::class,'change_password']);
+    Route::post('parents/change_password', [UserController::class,'update_change_password']);
 
     // Route::get('parent/dashboard', function () {
     //     return view('admin.dashboard');
     // });
+
+    Route::get('parents/account', [UserController::class,'MyAccount']);
+    Route::post('parents/account', [UserController::class,'UpdateMyParentsAccount']);
 });
