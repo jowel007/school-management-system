@@ -215,6 +215,16 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                  <a href="{{ url('admin/account') }}" class="nav-link  @if(Request::segment(2) == 'account') active @endif">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      My Account
+                    </p>
+                  </a>
+                </li>
+                
+
             @elseif (Auth::user()->user_type == 2)
 
               <li class="nav-item">
