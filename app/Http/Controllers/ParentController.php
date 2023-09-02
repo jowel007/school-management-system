@@ -164,4 +164,14 @@ class ParentController extends Controller
         return redirect()->back()->with('error','Student Parent Successfully Delete...');
     }
 
+    //parent dashboard side
+
+    public function ParentMyStudent()
+    {
+        $id = Auth::user()->id;
+        $data['getRecord'] = User::getMyStudent($id);
+        $data['header_title'] = "My Student";
+        return view('parent.my_student',$data);
+    }
+
 }

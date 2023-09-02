@@ -319,7 +319,7 @@ class User extends Authenticatable
     static public function getMyStudent($parent_id){
 
         $return = self::select('users.*','school_classes.name as class_name','parent.name as parent_name')
-            ->join('users as parent','parent.id','=','users.parent_id','left') 
+            ->join('users as parent','parent.id','=','users.parent_id') 
             ->join('school_classes','school_classes.id','=','users.class_id','left')
             ->where('users.user_type','=',3)
             ->where('users.parent_id','=',$parent_id)

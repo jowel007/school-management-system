@@ -25,7 +25,6 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
 
-
                             <form method="post" action="">
                                 @csrf
                                 <div class="card-body">
