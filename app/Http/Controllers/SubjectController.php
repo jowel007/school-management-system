@@ -2,26 +2,29 @@
 
 namespace App\Http\Controllers;
 
-
-
 use Illuminate\Http\Request;
 use App\Models\Subject;
+use App\Models\ClassSubject;
 use Auth;
+
+
 class SubjectController extends Controller
 {
-    public function list(){
+    public function list()
+    {
         $data['getRecord'] = Subject::getRecord();
-
         $data['header_title'] = "Subject List";
         return view('admin.subject.list',$data);
     }
 
-    public function add(){
+    public function add()
+    {
         $data['header_title'] = "Add  subject";
         return view('admin.subject.add',$data);
     }
 
-    public function insert(Request $request){
+    public function insert(Request $request)
+    {
     //  dd($request->all());
         $data = new Subject;
         $data->name = trim($request->name);
@@ -58,12 +61,23 @@ class SubjectController extends Controller
         return redirect('admin/subject/list')->with('success','Subject updated Successfully');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $data = Subject::getSingle($id);
         $data->is_delete = 1;
         $data->save();
 
         return redirect()->back()->with('error','Subject Deletd Successfully');
+    }
+
+    // student part
+
+    public function MySubject()
+    {
+        // dd(Auth::user()->class_id);
+        $data['MySubject'] = ClassSubject::MySubject(Auth::user()->class_id);
+        $data['header_title'] = "My Subject List";
+        return view('student.my_subject',$data);
     }
 
 

@@ -58,4 +58,21 @@ class ClassSubject extends Model
     }
 
 
+    // student part
+
+    static public function MySubject($class_id)
+    {
+        return self::select('class_subjects.*','subjects.name as subject_name','subjects.type as subject_type')
+                    ->join('subjects','subject_id', '=','class_subjects.subject_id')
+                    ->join('school_classes','class_id', '=','class_subjects.class_id')
+                    ->join('users','users.id', '=','class_subjects.created_by')
+                    ->where('class_subjects.class_id', '=' , $class_id)
+                    ->where('class_subjects.is_delete','=',0)
+                    ->where('class_subjects.status','=',0)
+                    ->orderBy('class_subjects.id','desc')
+                    ->get();
+
+    }
+
+
 }
