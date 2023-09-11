@@ -232,7 +232,7 @@
                     </p>
                   </a>
                 </li>
-                
+
 
             @elseif (Auth::user()->user_type == 2)
 
@@ -245,9 +245,18 @@
                 </a>
               </li>
 
+                <li class="nav-item">
+                    <a href="{{ url('teacher/my_class_subject') }}" class="nav-link  @if(Request::segment(2) == 'my_class_subject') active @endif">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            My Class & Subject
+                        </p>
+                    </a>
+                </li>
+
               <li class="nav-item">
                 <a href="{{ url('teacher/account') }}" class="nav-link  @if(Request::segment(2) == 'account') active @endif">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon far fa-user"></i>
                   <p>
                     My Account
                   </p>
@@ -255,7 +264,7 @@
               </li>
 
                 <li class="nav-item">
-                    <a href="{{ url('techer/change_password') }}" class="nav-link @if (Request::segment(2) == 'change_password') active @endif">
+                    <a href="{{ url('teacher/change_password') }}" class="nav-link @if (Request::segment(2) == 'change_password') active @endif">
                         <i class="nav-icon far fa-user"></i>
                         <p>
                             Change Password

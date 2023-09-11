@@ -63,7 +63,23 @@ class AssignClassTeacher extends Model
         return self::where('class_id','=',$class_id)->delete();
     }
 
+    // techer dashboard side
 
+    static public function getMyClassSubject($teacher_id)
+    {
+        return self::select('assign_class_teacher.*','school_classes.name as class_name','subjects.name as subject_name','subjects.type as subject_type')
+            ->join('school_classes','school_classes.id', '=','assign_class_teacher.class_id')
+            ->join('class_subjects','class_subjects.class_id', '=','school_classes.id')
+            ->join('subjects','subjects.id', '=','class_subjects.subject_id')
+            ->where('assign_class_teacher.is_delete','=',0)
+            ->where('assign_class_teacher.status','=',0)
+            ->where('subjects.status','=',0)
+            ->where('subjects.is_delete','=',0)
+            ->where('class_subjects.status','=',0)
+            ->where('class_subjects.is_delete','=',0)
+            ->where('assign_class_teacher.teacher_id','=',$teacher_id)
+            ->get();
+    }
 
 
 

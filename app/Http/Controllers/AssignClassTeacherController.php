@@ -160,4 +160,15 @@ class AssignClassTeacherController extends Controller
     }
 
 
+    ///////////////////// techer dashboard side ////////////////////////////////
+
+    public function MyClassSubject()
+    {
+//        die();
+        $data['getRecord'] = AssignClassTeacher::getMyClassSubject(Auth::user()->id);
+        $data['header_title'] = 'My Class & Subject';
+        return view('teacher.my_class_subject',$data);
+    }
+
+
 }
