@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Assign Class Teacher List</h1>
+                        <h1>Assign Class Teacher List {{ $getRecord->total() }}</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right">
                         <a href="{{ url('admin/assign_class_teacher/add') }}" class="btn btn-primary">Add Assign Teacher</a>
@@ -26,6 +26,55 @@
 
                     <!-- /.col -->
                     <div class="col-md-12">
+
+                        <!-- general form elements -->
+                        <div class="card">
+
+                            <div class="card-header">
+                                <h3 class="card-title">Search Assign Class Teacher</h3>
+                            </div>
+
+                            <form method="get" action="">
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-md-2">
+                                            <label>Class Name</label>
+                                            <input type="text" class="form-control" name="class_name" value="{{ Request::get('class_name') }}"  placeholder="Enter Class Name">
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                            <label>Teacher Name</label>
+                                            <input type="text" class="form-control" name="teacher_name" value="{{ Request::get('teacher_name') }}"  placeholder="Enter Subject Name">
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                            <label>Status</label>
+                                            <select class="form-control" name="status">
+                                                <option value="">Select</option>
+                                                <option {{ (Request::get('status') == 100) ? 'selected' : '' }} value="100">Active</option>
+                                                <option {{ (Request::get('status') == 1) ? 'selected' : '' }} value="1">Inactive</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                            <label>Date</label>
+                                            <input type="date" class="form-control" name="date" value="{{ Request::get('date') }}">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <button class="btn btn-primary" type="submit" style="margin-top: 30px">Search</button>
+                                            <a href="{{ url('admin/assign_class_teacher/list') }}" class="btn btn-success" style="margin-top: 30px">Clear</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </form>
+                        </div>
+                        <!-- /.card -->
+
+
                         @include("_message")
                         <div class="card">
                             <div class="card-header">
